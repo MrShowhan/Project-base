@@ -8,6 +8,11 @@ import base64
 import string
 from io import BytesIO
 from urllib.parse import quote
+
+"""
+    本项目是专门为练习requests、MongoDB、BeautifulSoup等库
+"""
+
 class AnJuKe:
     def __init__(self):
         base_url = 'https://gz.zu.anjuke.com/fangyuan/?t=1&from=0&comm_exist=on&kw={}'.format(input("请输入小区名字、地址……:"))
@@ -17,7 +22,7 @@ class AnJuKe:
         self.headers ={
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
             'cookie': 'aQQ_ajkguid=0B31434C-A6A9-914A-3016-EFD37A5B5EF8; ctid=12; id58=e87rkF/CB/lzbhvABkTxAg==; _ga=GA1.2.1358634196.1606551544; 58tj_uuid=7538498d-e8c1-4e2a-8563-70649d66aa59; new_uv=1; als=0; cmctid=3; __guid=63061881.1974302922811620400.1607264889348.2612; wmda_uuid=1d51ca6a1baaf9e97cc1e14c56cdc27f; wmda_new_uuid=1; wmda_visited_projects=%3B6289197098934; xxzl_cid=c7dccbd87abc46aaa661b924ba544ed2; xzuid=cdab9516-10f3-448b-a671-a2558c149344; lps=https%3A%2F%2Fgz.zu.anjuke.com%2Ffangyuan%2F%3Ft%3D1%26from%3D0%26comm_exist%3Don%26kw%3D%25E5%2585%2583%25E4%25B8%258B%25E7%2594%25B0%25E6%259D%2591%7C; sessid=B9487E08-46C9-FEB4-DDF9-88D7AEC09043; obtain_by=2; twe=2; monitor_count=16; xzfzqtoken=Cw%2Fgkwi39%2Fn6tp%2FsZR42Z3u8YRwoatsgK5ZGcGEzQmqCXsfHq0kiHsbzIE8ZjK6Ain35brBb%2F%2FeSODvMgkQULA%3D%3D'
-        }
+        }   #手动更新cookie
 
         # 连接数据库
         MONGO_URl = 'localhost'
@@ -25,11 +30,6 @@ class AnJuKe:
         self.MONGO_TABLE = 'zufang'  # 表名
         client = pymongo.MongoClient(MONGO_URl)
         self.db = client[MONGO_DB]
-
-    # def __repr__(self):
-    #     print(str(self.params))
-
-
 
     #访问列表网页并提取所有搜索到的房源连接
     def get_total_link(self,url):
