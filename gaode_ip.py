@@ -39,7 +39,7 @@ class GaoDe:
         except:
             print('代理失效')
             self.del_proxies(proxy_ip)
-
+            self.get_data(url)
 
     def parse_data(self,datas):
         dict = {}
